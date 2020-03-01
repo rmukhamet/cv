@@ -1,0 +1,60 @@
+name: Create CV in PDF
+on: [push]
+jobs:
+  buildMD:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - run: mkdir output
+    - name: Convert md to pdf
+      uses: docker://pandoc/latex:latest
+      with: 
+        args: "--standalone --output=output/cv_md.pdf cv.md"
+    - uses: actions/upload-artifact@master
+      with:
+        path: output
+        name: cv_md.pdf
+  buildTEX:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - run: mkdir output   
+    - name: Convert tex to pdf
+   #   uses: docker://pandoc/latex:latest
+    #  with: 
+    #    args: "--standalone --output=output/cv_tex.pdf cv.md"
+       
+      uses: xu-cheng/latex-action@master
+      with:
+        root_file: cv.tex
+        working_directory: src
+        compiler: xelatex
+        #args: "-output-directory=../output"
+    - run: cp src/cv.pdf output/cv_tex.pdf
+    - uses: actions/upload-artifact@master
+      with:
+        path: output
+        name: cv_tex.pdf
+  release:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: [buildMD, buildTEX]
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Get md
+      uses: actions/download-artifact@master
+      with:
+        name: cv_md.pdf
+        path: .
+    - name: Get tex
+      uses: actions/download-artifact@master
+      with:
+        name: cv_tex.pdf
+        path: .
+    - name: Save
+      uses: softprops/action-gh-release@v0.1.5
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        files: |
+          cv_md.pdf
+          cv_tex.pdf
