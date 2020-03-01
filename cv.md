@@ -17,7 +17,7 @@ Russian: native
 * Typescript
 
 ## Experience:
-##### 2016.01 - 2017.11
+##### 2015 - 2017.12
 **truckmove.ru - transport management system**  
 *CTO*  
 Organizing development process, project architecture.  
@@ -29,7 +29,7 @@ golang, PostgreSQL, Redis, consul, gRPC, microservices, PBX integrations, CI/CD,
 golang, typescript, postgreSQL, docker, nomad, unit tests, integrity tests,
 angular6, CI/CD
 
-##### 2018.03 - 2019.08
+##### 2018.04 - 2019.09
 **Zirra.com - alternative data analyst platform**  
 *golang developer*  
 - Programming of data systems that extract information from many sources, then process, then normalize, and analyze the information that powers Zirra products.
