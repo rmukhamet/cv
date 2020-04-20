@@ -51,7 +51,7 @@ jobs:
         name: cv_tex.pdf
         path: .
     - name: Prepare final
-    - run: cp cv_tex.pdf CV_Rafael_Mukhametdzhanov.pdf
+      run: cp cv_tex.pdf CV_Rafael_Mukhametdzhanov.pdf
     - name: Save
       uses: softprops/action-gh-release@v0.1.5
       env:
