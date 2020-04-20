@@ -20,16 +20,11 @@ jobs:
     - uses: actions/checkout@v2
     - run: mkdir output   
     - name: Convert tex to pdf
-   #   uses: docker://pandoc/latex:latest
-    #  with: 
-    #    args: "--standalone --output=output/cv_tex.pdf cv.md"
-       
       uses: xu-cheng/latex-action@master
       with:
         root_file: cv.tex
         working_directory: src
         compiler: xelatex
-        #args: "-output-directory=../output"
     - run: cp src/cv.pdf output/cv_tex.pdf
     - uses: actions/upload-artifact@master
       with:
