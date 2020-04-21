@@ -6,14 +6,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Checkout submodules
-      shell: bash
-      run: |
-        # If your submodules are configured to use SSH instead of HTTPS please uncomment the following line
-        # git config --global url."https://github.com/".insteadOf "git@github.com:"
-        auth_header="$(git config --local --get http.https://github.com/.extraheader)"
-        git submodule sync --recursive
-        git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
-        mkdir output
+    - run: mkdir output   
     - name: Convert md to pdf
       uses: docker://pandoc/latex:latest
       with: 
@@ -42,12 +35,19 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
-    - run: mkdir output   
+      shell: bash
+      run: |
+        # If your submodules are configured to use SSH instead of HTTPS please uncomment the following line
+        # git config --global url."https://github.com/".insteadOf "git@github.com:"
+        auth_header="$(git config --local --get http.https://github.com/.extraheader)"
+        git submodule sync --recursive
+        git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
+        mkdir output
     - name: Convert tex_v2 to pdf
       uses: xu-cheng/latex-action@master
       with:
         root_file: cv.tex
-        working_directory: $(readlink -f tex_v2/src)
+        working_directory: tex_v2/src
         compiler: xelatex
     - run: ls
     - run: cp tex_v2/src/cv.pdf output/cv_tex_v2.pdf
