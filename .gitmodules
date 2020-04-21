@@ -1,0 +1,3 @@
+[submodule "tex_v2/yaac"]
+	path = tex_v2/yaac
+	url = https://github.com/darwiin/yaac-another-awesome-cv.git

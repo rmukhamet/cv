@@ -25,13 +25,28 @@ jobs:
         root_file: cv.tex
         working_directory: tex_v1/src
         compiler: xelatex
-    - run: pwd
-    - run: ls
     - run: cp tex_v1/src/cv.pdf output/cv_tex_v1.pdf
     - uses: actions/upload-artifact@master
       with:
         path: output
         name: cv_tex_v1.pdf
+  buildTexV2:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - run: mkdir output   
+    - name: Convert tex_v2 to pdf
+      uses: xu-cheng/latex-action@master
+      with:
+        root_file: cv.tex
+        working_directory: tex_v2/src
+        compiler: xelatex
+    - run: ls
+    - run: cp tex_v2/src/cv.pdf output/cv_tex_v2.pdf
+    - uses: actions/upload-artifact@master
+      with:
+        path: output
+        name: cv_tex_v2.pdf
   release:
     if: startsWith(github.ref, 'refs/tags/')
     needs: [buildMD, buildTexV1]
