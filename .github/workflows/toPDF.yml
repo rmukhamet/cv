@@ -49,7 +49,6 @@ jobs:
         root_file: cv.tex
         working_directory: tex_v2/src
         compiler: xelatex
-    - run: ls
     - run: cp tex_v2/src/cv.pdf output/cv_tex_v2.pdf
     - uses: actions/upload-artifact@master
       with:
