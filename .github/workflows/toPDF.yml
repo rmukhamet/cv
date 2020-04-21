@@ -47,7 +47,7 @@ jobs:
       uses: xu-cheng/latex-action@master
       with:
         root_file: cv.tex
-        working_directory: tex_v2/src
+        working_directory: $(readlink -f tex_v2/src)
         compiler: xelatex
     - run: ls
     - run: cp tex_v2/src/cv.pdf output/cv_tex_v2.pdf
