@@ -2,7 +2,7 @@ name: Create CV in PDF
 on: [push]
 jobs:
   buildMD:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - run: mkdir output
@@ -15,7 +15,7 @@ jobs:
         path: output
         name: cv_md.pdf
   buildTEX:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - run: mkdir output   
@@ -33,7 +33,7 @@ jobs:
   release:
     if: startsWith(github.ref, 'refs/tags/')
     needs: [buildMD, buildTEX]
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
     - name: Get md
       uses: actions/download-artifact@master
