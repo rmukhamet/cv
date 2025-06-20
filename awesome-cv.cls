@@ -276,8 +276,6 @@
 % Defines vertical space after section
 % Usage: \sectionafterspace{<length>}
 \newcommand*{\sectionafterspace}[1]{\renewcommand{\acvSectionTopSkip}{#1}}
-% Set less space after section by default
-\renewcommand{\acvSectionTopSkip}{1mm}
 
 % Defines writer's mobile (optional)
 % Usage: \mobile{<mobile number>}
@@ -400,7 +398,7 @@
 \newcommand{\acvHeaderAfterQuoteSkip}{5mm}
 
 % Others
-\newcommand{\acvSectionTopSkip}{3mm}
+\newcommand{\acvSectionTopSkip}{2mm}
 \newcommand{\acvSectionContentTopSkip}{2.5mm}
 
 
