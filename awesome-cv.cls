@@ -273,10 +273,15 @@
 % Usage: \position{<position>}
 \newcommand*{\position}[1]{\def\@position{#1}}
 
+% Defines vertical space after section
+% Usage: \sectionafterspace{<length>}
+\newcommand*{\sectionafterspace}[1]{\renewcommand{\acvSectionTopSkip}{#1}}
+% Set less space after section by default
+\renewcommand{\acvSectionTopSkip}{1mm}
+
 % Defines writer's mobile (optional)
 % Usage: \mobile{<mobile number>}
 \newcommand*{\mobile}[1]{\def\@mobile{#1}}
-
 % Defines writer's email (optional)
 % Usage: \email{<email address>}
 \newcommand*{\email}[1]{\def\@email{#1}}
